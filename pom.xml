@@ -9,9 +9,9 @@
   <url>http://maven.apache.org</url>
 
   <properties>
-    <spring.ver>
-      3.2.13.RELEASE
-    </spring.ver>
+    <spring.ver>3.2.13.RELEASE</spring.ver>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
   </properties>
 
   <dependencies>
@@ -45,6 +45,7 @@
   </dependencies>
 
   <build>
+    <sourceDirectory>src/main/java/com/epam/spring</sourceDirectory>
     <finalName>com.epam.spring.core</finalName>
   </build>
 
