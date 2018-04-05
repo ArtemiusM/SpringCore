@@ -6,28 +6,25 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class App {
 
     Client client;
-    ConsoleEventLogger eventLogger;
+    EventLogger eventLogger;
 
-    public App(Client client, ConsoleEventLogger eventLogger){
+    public App(Client client, EventLogger eventLogger){
         this.client = client;
         this.eventLogger = eventLogger;
     }
 
     public static void main(String[] args) {
-//        App app = new App();
-//        app.client = new Client("1", "John Smith");
-//        app.eventLogger = new ConsoleEventLogger();
-//        app.logEvent("Some event for user 1");
         ApplicationContext ctx = new ClassPathXmlApplicationContext("Spring.xml");
         App app = (App) ctx.getBean("app");
-        app.logEvent("Some event for 1");
-        app.logEvent("Some event for 2");
+        Event event = (Event) ctx.getBean("event");
+        event.setMsg("Event Created!");
+        app.logEvent(event);
     }
 
-    private void logEvent(String msg) {
-        String message = msg.replaceAll(client.getId(), client.getFullname());
-        eventLogger.logEvent(message);
-
+    private void logEvent(Event event) {
+//        String message = msg.replaceAll(client.getId(), client.getFullname());
+//        eventLogger.logEvent(message);
+        eventLogger.logEvent(event);
     }
 }
 
