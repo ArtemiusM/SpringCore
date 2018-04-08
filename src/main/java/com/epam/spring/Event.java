@@ -4,6 +4,7 @@ import java.text.DateFormat;
 import java.util.Date;
 
 public class Event {
+
     int id;
     String msg;
     Date date;
@@ -25,11 +26,7 @@ public class Event {
 
     @Override
     public String toString() {
-        return (id + " " + msg + "\n " + " " + df.format(date));
-    }
-
-    public static void main(String[] args) {
-
+        return (id + " " + msg + " " + df.format(date) +"\n");
     }
 
 }

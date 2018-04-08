@@ -1,6 +1,7 @@
 package com.epam.spring;
 
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class App {
@@ -14,11 +15,13 @@ public class App {
     }
 
     public static void main(String[] args) {
-        ApplicationContext ctx = new ClassPathXmlApplicationContext("Spring.xml");
+        ConfigurableApplicationContext ctx = new ClassPathXmlApplicationContext("Spring.xml");
         App app = (App) ctx.getBean("app");
         Event event = (Event) ctx.getBean("event");
-        event.setMsg("Event Created!");
+        event.setMsg("Event 1 Created!");
         app.logEvent(event);
+        ctx.close();
+
     }
 
     private void logEvent(Event event) {
