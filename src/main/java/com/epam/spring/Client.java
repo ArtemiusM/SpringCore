@@ -3,6 +3,7 @@ package com.epam.spring;
 public class Client {
     String id;
     String fullname;
+    String greeting;
 
     public Client(){
     }
@@ -26,5 +27,9 @@ public class Client {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public void setGreeting(String greeting) {
+        this.greeting = greeting;
     }
 }
