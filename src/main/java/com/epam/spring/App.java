@@ -39,7 +39,6 @@ public class App {
         app.logEvent(event,EventType.ERROR);
 
         ctx.close();
-
     }
 
     private void logEvent(Event event, EventType type) {

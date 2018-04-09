@@ -2,11 +2,11 @@ package com.epam.spring;
 
 import java.util.ArrayList;
 
-public class CombineEventLogger implements EventLogger {
+public class CombinedEventLogger implements EventLogger {
 
     ArrayList<EventLogger> loggers;
 
-    public CombineEventLogger (ArrayList<EventLogger> loggers){
+    public CombinedEventLogger(ArrayList<EventLogger> loggers){
         this.loggers = loggers;
     }
 
