@@ -1,7 +1,16 @@
 package com.epam.spring;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
+
 import java.text.DateFormat;
 import java.util.Date;
+
+@Component("event")
+@Scope("prototype")
 
 public class Event {
 
@@ -10,7 +19,8 @@ public class Event {
     Date date;
     DateFormat df;
 
-    public Event(Date date,DateFormat df){
+    @Autowired
+    public Event(@Value("#{new java.util.Date()}")Date date, @Qualifier("dateFormat") DateFormat df){
         this.date = date;
         this.df = df;
         this.id = (int) (Math.random()*1000000);

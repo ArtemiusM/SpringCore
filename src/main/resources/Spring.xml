@@ -2,40 +2,51 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:context="http://www.springframework.org/schema/context"
        xmlns:p="http://www.springframework.org/schema/p"
        xmlns:c="http://www.springframework.org/schema/c"
        xsi:schemaLocation="
        http://www.springframework.org/schema/beans
  	   http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
  	   http://www.springframework.org/schema/util
-       http://www.springframework.org/schema/util/spring-util-3.2.xsd">
+       http://www.springframework.org/schema/util/spring-util-3.2.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context-3.2.xsd">
+
+    <context:annotation-config/>
+    <context:component-scan base-package="com.epam.spring"/>
 
 
     <import resource="loggers.xml"/>
 
-    <util:map id="loggerMap">
+    <util:map id="loggerMap" key-type="com.epam.spring.EventType">
         <entry key="INFO" value-ref="consoleEventLogger"/>
         <entry key="ERROR" value-ref="combinedEventLogger"/>
     </util:map>
 
-    <bean id="app" class="com.epam.spring.App">
-        <constructor-arg ref="client"/>
-        <constructor-arg ref="cacheFileEventLogger"/>
-        <constructor-arg ref="loggerMap"/>
-    </bean>
+    <!--<util:map id="loggerMap">-->
+        <!--<entry key="#{T(com.epam.spring.EventType).INFO}" value-ref="consoleEventLogger"/>-->
+        <!--<entry key="#{T(com.epam.spring.EventType).ERROR}" value-ref="combinedEventLogger"/>-->
+    <!--</util:map>-->
 
-    <bean id="client" class="com.epam.spring.Client"
-          p:greeting="${greeting}"
-          c:fullname="${name}">
-        <constructor-arg index="0" value="${id}"/>
-    </bean>
+    <!--<bean id="app" class="com.epam.spring.App">-->
+        <!--<constructor-arg ref="client"/>-->
+        <!--<constructor-arg ref="cacheFileEventLogger"/>-->
+        <!--<constructor-arg ref="loggerMap"/>-->
+    <!--</bean>-->
 
-    <bean id="event" class="com.epam.spring.Event" scope="prototype">
-        <constructor-arg>
-            <bean class="java.util.Date"/>
-        </constructor-arg>
-        <constructor-arg ref="dateFormat"/>
-    </bean>
+    <!--<bean id="client" class="com.epam.spring.Client"-->
+          <!--p:greeting="${greeting}"-->
+          <!--c:fullname="${name}">-->
+        <!--<constructor-arg index="0" value="${id}"/>-->
+    <!--</bean>-->
+
+    <!--<bean id="event" class="com.epam.spring.Event" scope="prototype">-->
+        <!--<constructor-arg>-->
+            <!--<bean class="java.util.Date"/>-->
+        <!--</constructor-arg>-->
+        <!--<constructor-arg ref="dateFormat"/>-->
+    <!--</bean>-->
 
     <bean id="dateFormat" class="java.text.DateFormat" factory-method="getDateTimeInstance"/>
 

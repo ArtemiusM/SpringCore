@@ -1,19 +1,31 @@
 package com.epam.spring;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.stereotype.Component;
 
+import javax.annotation.Resource;
 import java.util.Map;
 
+@Component("app")
 public class App {
 
+    @Autowired @Qualifier("client")
     Client client;
+    @Autowired @Qualifier("cacheFileEventLogger")
     EventLogger eventLogger;
     EventLogger defaultLogger;
+    @Resource(name="loggerMap")
     Map<EventType, EventLogger> loggers;
 
-    public App(Client client, EventLogger eventLogger, Map<EventType, EventLogger> loggers){
+    public  App(){
+    }
+
+    public App( Client client, EventLogger eventLogger, Map<EventType, EventLogger> loggers){
         this.client = client;
         this.eventLogger = eventLogger;
         this.loggers = loggers;

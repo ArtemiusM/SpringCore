@@ -8,25 +8,34 @@
  	   http://www.springframework.org/schema/util
        http://www.springframework.org/schema/util/spring-util-3.2.xsd">
 
-    <bean id="consoleEventLogger" class="com.epam.spring.ConsoleEventLogger"/>
-
-    <bean id="fileEventLogger" class="com.epam.spring.FileEventLogger" init-method="init">
-        <constructor-arg value="EventLog.txt"/>
-    </bean>
-
-    <bean id="cacheFileEventLogger" class="com.epam.spring.CacheFileEventLogger" init-method="init"
-          destroy-method="destroy">
-        <constructor-arg value="EventLog.txt"/>
-        <constructor-arg value="3"/>
-    </bean>
-
-    <bean id="combinedEventLogger" class="com.epam.spring.CombinedEventLogger">
+    <bean id="loggersList" class="java.util.ArrayList">
         <constructor-arg>
             <list>
-                <ref bean="consoleEventLogger"/>
-                <ref bean="fileEventLogger"/>
+                <ref bean="consoleEventLogger" />
+                <ref bean="fileEventLogger" />
             </list>
         </constructor-arg>
-
     </bean>
+
+    <!--<bean id="consoleEventLogger" class="com.epam.spring.ConsoleEventLogger"/>-->
+
+    <!--<bean id="fileEventLogger" class="com.epam.spring.FileEventLogger" init-method="init">-->
+        <!--<constructor-arg value="EventLog.txt"/>-->
+    <!--</bean>-->
+
+    <!--<bean id="cacheFileEventLogger" class="com.epam.spring.CacheFileEventLogger" init-method="init"-->
+          <!--destroy-method="destroy">-->
+        <!--<constructor-arg value="EventLog.txt"/>-->
+        <!--<constructor-arg value="3"/>-->
+    <!--</bean>-->
+
+    <!--<bean id="combinedEventLogger" class="com.epam.spring.CombinedEventLogger">-->
+        <!--<constructor-arg>-->
+            <!--<list>-->
+                <!--<ref bean="consoleEventLogger"/>-->
+                <!--<ref bean="fileEventLogger"/>-->
+            <!--</list>-->
+        <!--</constructor-arg>-->
+    <!--</bean>-->
+
 </beans>

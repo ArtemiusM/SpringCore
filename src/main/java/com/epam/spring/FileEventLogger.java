@@ -1,18 +1,25 @@
 package com.epam.spring;
 
 import org.apache.commons.io.FileUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
+
+import javax.annotation.PostConstruct;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+@Component("fileEventLogger")
 public class FileEventLogger implements EventLogger{
 
     String filename;
     File file;
 
-    protected FileEventLogger(String filename){
+    @Autowired
+    protected FileEventLogger(@Value("EventLog.txt")String filename){
         this.filename = filename;
         this.file = new File(this.getClass().getResource("/").getPath() + filename);
         createEventLogFile(file);
@@ -27,6 +34,7 @@ public class FileEventLogger implements EventLogger{
         }
     }
 
+    @PostConstruct
     public void init() throws IOException {
         // check file write access
         if(!file.canWrite()){
